@@ -2,6 +2,7 @@
 Contains examples of different webapps that run as a docker container
 
 ### PostgreSQL PG Admin with a volume to contain DB settings
+#### Docs for [container app](https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html)
 ```bash
 docker run  \
             --name pg_admin \
@@ -12,6 +13,16 @@ docker run  \
             -d dpage/pgadmin4
 ```
 
+#### Run with port 85 in host network
+``` bash
+docker run  \
+            --name pg_admin_app \
+            -e "PGADMIN_DEFAULT_EMAIL=admin@domain.com" \
+            -e "PGADMIN_DEFAULT_PASSWORD=MY-Secret!" \
+            -e "PGADMIN_LISTEN_PORT=85" \
+            -v pgadmin-data --network="host" \
+            -d dpage/pgadmin4
+```
 ### Access MYSQL with php Admin --link testsql:db
 
 ```bash
