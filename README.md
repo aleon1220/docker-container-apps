@@ -1,5 +1,5 @@
-# docker-container-apps
-Contains examples of different webapps that run as a docker container
+# Container apps
+container-apps-stacks examples of different webapps that run as a docker containers or docker compose stacks
 
 ### PostgreSQL PG Admin with a volume to contain DB settings
 #### Docs for [container app](https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html)
@@ -13,7 +13,8 @@ docker run  \
             -d dpage/pgadmin4
 ```
 
-#### Run with port 85 in host network
+#### PostgreSQL PG Admin
+Run with port 85 in host network
 ``` bash
 docker run  \
             --name pg_admin_app \
@@ -23,7 +24,8 @@ docker run  \
             -v pgadmin-data --network="host" \
             -d dpage/pgadmin4
 ```
-### Access MYSQL with php Admin --link testsql:db
+### MYSQL php Admin 
+Access MySQLDBs
 
 ```bash
 DOMAIN=mysql-multi.500
@@ -32,6 +34,7 @@ docker run                         \
           -p 8080:80               \
           -e PMA_HOST="$DOMAIN" \
           -e PMA_PORT=3306      \
+          --link testsql:db
           -d phpmyadmin/phpmyadmin
 ```
 
@@ -94,13 +97,19 @@ docker run -d -p 9091:9091 --name push_gateway prom/pushgateway
 ```
 
 ###  Rancher Labs Kubernetes management tool
-`docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:latest`
+```bash
+docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:latest
+```
 
 ###  Runnning a local docker registry
-`docker run -d -p 5000:5000 --restart=always --name container_registry registry:latest`
+```bash
+docker run -d -p 5000:5000 --restart=always --name container_registry registry:latest
+```
 
 ###  Run Atlasian FishEye
-`docker run -d -p 8080:8080 --name fish_eye mswinarski/atlassian-fisheye`
+```bash
+docker run -d -p 8080:8080 --name fish_eye mswinarski/atlassian-fisheye
+```
 
 ###  kubernetes analyzer
 ```bash
